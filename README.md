@@ -99,18 +99,22 @@ The application displays the generated answer alongside the retrieved source pag
 
 The retriever finds candidate evidence; the LLM interprets that evidence and generates the response. The current implementation uses prompt instructions to encourage grounded answers, but factual correctness and citation accuracy still need systematic evaluation.
 
-🧰 Tech Stack
-Component	Technology	Purpose
-Language	Python	Application logic
-Web interface	Streamlit	Interactive user interface
-PDF processing	PyMuPDF	Text extraction and page metadata
-Embeddings	Sentence Transformers	Semantic vector representations
-Embedding model	all-MiniLM-L6-v2	Text and query embeddings
-Vector search	FAISS (IndexFlatL2)	Nearest-neighbor retrieval
-Local LLM runtime	Ollama	Local model inference
-Generation model	qwen3:8b	Textbook question answering
-Numerical processing	NumPy	Embedding arrays
-Testing	pytest	Automated tests
+## 🧰 Tech Stack
+
+```text
+| Component | Technology | Purpose |
+|-----------|------------|---------|
+| Language | Python | Application logic |
+| Web Interface | Streamlit | Interactive user interface |
+| PDF Processing | PyMuPDF | Text extraction and page metadata |
+| Embeddings | Sentence Transformers | Semantic vector representations |
+| Embedding Model | `all-MiniLM-L6-v2` | Text and query embeddings |
+| Vector Search | FAISS (`IndexFlatL2`) | Nearest-neighbor retrieval |
+| Local LLM Runtime | Ollama | Local model inference |
+| Generation Model | `qwen3:8b` | Textbook question answering |
+| Numerical Processing | NumPy | Embedding arrays |
+| Testing | pytest | Automated testing |
+```
 
 The project currently uses normalized embeddings and L2-distance search. The retrieval configuration will be evaluated experimentally rather than assumed to be optimal.
 
