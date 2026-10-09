@@ -131,11 +131,6 @@ The goal is to keep the application local and minimize external service dependen
 
 Actual GPU utilization depends on model size, quantization, context length, and the available VRAM. Some workloads may use system RAM or CPU resources as well.
 
-Copy this directly into your `README.md` file:
-
-markdown
-````
-
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -202,7 +197,6 @@ streamlit run app/main.py
 Open the local URL displayed in the terminal, usually:
 
 **http://localhost:8501**
-````
 
 6. Upload a textbook
 Select Upload new textbook.
