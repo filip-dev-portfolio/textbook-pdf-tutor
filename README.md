@@ -198,31 +198,36 @@ Open the local URL displayed in the terminal, usually:
 
 **http://localhost:8501**
 
-6. Upload a textbook
-Select Upload new textbook.
-Choose a PDF file.
-Wait for text extraction, chunking, embedding generation, and persistence to complete.
-Select an existing textbook from the library when needed.
-Enter a question and click Ask.
-Inspect the answer and its source references.
+### 6. Upload a Textbook
+
+1. Select **Upload new textbook**.
+2. Choose a PDF file.
+3. Wait for text extraction, chunking, embedding generation, and persistence to complete.
+4. Select an existing textbook from the library when needed.
+5. Enter a question and click **Ask**.
+6. Inspect the answer and its source references.
 
 The first ingestion of a textbook generates its embeddings. Previously processed textbooks are intended to reuse their saved data instead of being embedded again every time the application starts.
 
-📂 Project Structure
+---
+
+## 📂 Project Structure
+
+```text
 pdf-tutor/
 │
 ├── app/
 │   ├── main.py             # Streamlit interface and orchestration
 │   ├── pdf_processor.py    # PDF text extraction
-│   ├── chunker.py           # Text cleaning and chunking
-│   ├── embeddings.py        # Embedding generation
-│   ├── retriever.py         # Similarity search and retrieval
-│   ├── vector_store.py      # Embedding and chunk persistence
-│   ├── llm.py               # Ollama LLM interface
-│   ├── rag.py               # RAG prompt construction and answering
-│   ├── ingestion.py         # PDF ingestion pipeline
-│   ├── textbook_store.py    # Textbook library management
-│   └── quiz.py              # Quiz functionality and experiments
+│   ├── chunker.py          # Text cleaning and chunking
+│   ├── embeddings.py       # Embedding generation
+│   ├── retriever.py        # Similarity search and retrieval
+│   ├── vector_store.py     # Embedding and chunk persistence
+│   ├── llm.py              # Ollama LLM interface
+│   ├── rag.py              # RAG prompt construction and answering
+│   ├── ingestion.py        # PDF ingestion pipeline
+│   ├── textbook_store.py   # Textbook library management
+│   └── quiz.py             # Quiz functionality and experiments
 │
 ├── tests/
 │   └── test_pdf_processor.py
@@ -230,41 +235,57 @@ pdf-tutor/
 ├── scripts/
 │   └── inspect_pdf.py
 │
-├── notebooks/               # Experiments and exploration
+├── notebooks/              # Experiments and exploration
 │
 ├── data/
-│   └── textbooks/           # Local textbook data
+│   └── textbooks/          # Local textbook data
 │
 ├── requirements.txt
 ├── README.md
 └── .gitignore
+```
 
-🗃️ Local Data Storage
+---
 
-Each textbook is stored in its own directory under data/textbooks/.
+## 🗃️ Local Data Storage
+
+Each textbook is stored in its own directory under `data/textbooks/`.
 
 A typical textbook directory contains:
 
+```text
 data/textbooks/
 └── educational_psychology/
     ├── textbook.pdf
     ├── chunks.json
     └── embeddings.npy
+```
 
-textbook.pdf — the original uploaded PDF.
-chunks.json — extracted chunks and their metadata.
-embeddings.npy — the numerical vector representations of the chunks.
+### File Descriptions
+
+- **`textbook.pdf`** — The original uploaded PDF.
+- **`chunks.json`** — Extracted text chunks and their metadata.
+- **`embeddings.npy`** — Numerical vector representations of the chunks.
+
+### Embedding and Chunk Consistency
 
 The relationship between embeddings and chunks must remain consistent:
 
-embeddings[317]  <---->  chunks[317]
+```python
+embeddings[317]  # Corresponds to chunks[317]
+```
 
+Each embedding must correspond to the correct text chunk at the same index. If embeddings are regenerated, the associated vector data must be updated consistently.
 
-If embeddings are regenerated, the associated vector data must be updated consistently.
+### Embedding Model Compatibility
 
-Embedding model compatibility: all chunks and user queries for a given textbook must use the same embedding model. Changing the embedding model requires regenerating that textbook's embeddings and rebuilding its search index, even if the new model outputs vectors with the same dimensions.
+All chunks and user queries for a given textbook must use the same embedding model.
 
-Textbook data is local application data and should be backed up separately if needed.
+Changing the embedding model requires regenerating that textbook's embeddings and rebuilding its search index, even if the new model produces vectors with the same dimensions.
+
+### Data Backup
+
+Textbook data is stored locally and should be backed up separately if needed.
 
 🧠 Key Engineering Concepts
 
