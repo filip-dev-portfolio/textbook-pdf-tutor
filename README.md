@@ -117,71 +117,92 @@ The retriever finds candidate evidence; the LLM interprets that evidence and gen
 
 The project currently uses normalized embeddings and L2-distance search. The retrieval configuration will be evaluated experimentally rather than assumed to be optimal.
 
-💻 Hardware and Local Execution
+## 💻 Hardware and Local Execution
 
 The project is developed and tested on the following setup:
 
-Operating system: Windows
-RAM: 64 GB
-GPU: NVIDIA RTX 5070 with 8 GB VRAM
-Python environment: .venv
-LLM runtime: Ollama
+ - **Operating system:** Windows
+ - **RAM:** 64 GB
+ - **GPU:** NVIDIA RTX 5070 with 8 GB VRAM
+ - **Python environment:** .venv
+ - **LLM runtime:** Ollama
 
 The goal is to keep the application local and minimize external service dependencies.
 
 Actual GPU utilization depends on model size, quantization, context length, and the available VRAM. Some workloads may use system RAM or CPU resources as well.
 
-🚀 Getting Started
-Prerequisites
+Copy this directly into your `README.md` file:
 
-Install the following:
+markdown
+````
 
-Python
-Git
-Ollama
-An NVIDIA GPU is optional, but useful for accelerating supported workloads.
-1. Clone the repository
+## 🚀 Getting Started
+
+### Prerequisites
+
+Install the following tools before getting started:
+
+- **Python**
+- **Git**
+- **Ollama**
+
+An NVIDIA GPU is optional but useful for accelerating supported workloads.
+
+### 1. Clone the Repository
+
+```bash
 git clone <YOUR_REPOSITORY_URL>
 cd pdf-tutor
+```
 
+Replace `<YOUR_REPOSITORY_URL>` with your Git repository URL.
 
-Replace <YOUR_REPOSITORY_URL> with your Git repository URL.
-
-2. Create and activate a virtual environment
+### 2. Create and Activate a Virtual Environment
 
 On Windows:
 
+```bash
 python -m venv .venv
 .venv\Scripts\activate
+```
 
-3. Install dependencies
+### 3. Install Dependencies
+
+Upgrade `pip` and install the required packages:
+
+```bash
 python -m pip install --upgrade pip
 pip install -r requirements.txt
+```
 
+> **Note:** PyTorch and CUDA compatibility depends on the installed Python version, GPU drivers, and package versions. If GPU support is unavailable, follow the appropriate [PyTorch installation instructions](https://pytorch.org/get-started/locally/).
 
-PyTorch and CUDA compatibility can depend on the installed Python version, GPU drivers, and package versions. Follow the appropriate PyTorch installation instructions if GPU support is unavailable.
+### 4. Download the Language Model
 
-4. Download the language model
+Make sure Ollama is installed and running, then download the required model:
 
-Make sure Ollama is installed and running, then execute:
-
+```bash
 ollama pull qwen3:8b
-
+```
 
 Verify that the model is available:
 
+```bash
 ollama list
+```
 
-5. Start the application
+### 5. Start the Application
 
-From the project root:
+From the project root directory, run:
 
+```bash
 streamlit run app/main.py
+```
 
+Open the local URL displayed in the terminal, usually:
 
-Open the local URL shown in the terminal, usually:
-
-http://localhost:8501
+**http://localhost:8501**
+````
 
 6. Upload a textbook
 Select Upload new textbook.
