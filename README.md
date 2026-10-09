@@ -101,7 +101,6 @@ The retriever finds candidate evidence; the LLM interprets that evidence and gen
 
 ## 🧰 Tech Stack
 
-```text
 | Component | Technology | Purpose |
 |-----------|------------|---------|
 | Language | Python | Application logic |
@@ -114,7 +113,7 @@ The retriever finds candidate evidence; the LLM interprets that evidence and gen
 | Generation Model | `qwen3:8b` | Textbook question answering |
 | Numerical Processing | NumPy | Embedding arrays |
 | Testing | pytest | Automated testing |
-```
+
 
 The project currently uses normalized embeddings and L2-distance search. The retrieval configuration will be evaluated experimentally rather than assumed to be optimal.
 
