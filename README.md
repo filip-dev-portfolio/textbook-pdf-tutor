@@ -287,82 +287,97 @@ Changing the embedding model requires regenerating that textbook's embeddings an
 
 Textbook data is stored locally and should be backed up separately if needed.
 
-🧠 Key Engineering Concepts
+## 🧠 Key Engineering Concepts
 
 This project is also a practical learning environment for understanding the internals of modern AI applications.
 
-Embeddings and semantic search
+### Embeddings and Semantic Search
 
 Text is converted into vectors so semantically related passages can be retrieved even when the query and source passage use different wording.
 
-Vector similarity
+### Vector Similarity
 
-FAISS currently uses IndexFlatL2, which performs exact nearest-neighbor search using squared L2 distance. Because embeddings are normalized, the relationship between L2 distance and cosine similarity can be investigated experimentally.
+FAISS currently uses `IndexFlatL2`, which performs exact nearest-neighbor search using squared L2 distance. Because embeddings are normalized, the relationship between L2 distance and cosine similarity can be investigated experimentally.
 
-Retrieval-Augmented Generation
+### Retrieval-Augmented Generation (RAG)
 
 RAG supplies retrieved external context to an LLM at inference time. This can improve the relevance and traceability of answers, but it does not guarantee that every generated claim is correct.
 
-Chunking and context windows
+### Chunking and Context Windows
 
 Chunk size and boundaries influence what information is available during retrieval and generation. The current chunker uses character-based limits, which leaves room for future experiments with token-aware and document-structure-aware strategies.
 
-Evaluation
+### Evaluation
 
 A working demonstration is not sufficient to establish retrieval or answer quality. The next stage is to build a benchmark of questions, expected answers, and expected source chunks or pages, then compare configurations using repeatable measurements.
 
-🧪 Development Roadmap
+---
+
+## 🧪 Development Roadmap
 
 The project is being developed incrementally, prioritizing understanding and measurable improvements.
 
-PDF text extraction with page metadata
-Initial text cleaning and chunking
-Embedding generation and persistence
-FAISS vector retrieval
-Local LLM integration with Ollama
-Basic RAG question answering
-Source labels and page references
-Local textbook storage and selection
-Basic Streamlit upload and question-answering workflow
-Improve citation reliability and inspect prompts
-Build a small retrieval evaluation dataset
-Measure Recall@k, Precision@k, and MRR
-Compare cosine similarity and L2-distance retrieval
-Experiment with chunk size, overlap, and chunk boundaries
-Compare embedding models using the same evaluation dataset
-Evaluate answer correctness and groundedness
-Build textbook-based question generation
-Add interactive quizzes and scoring
-Develop an interview-preparation mode
-Measure GPU memory usage, inference latency, and quantization trade-offs
-🎯 Project Goals
+### Implemented Features
+
+- [x] PDF text extraction with page metadata
+- [x] Initial text cleaning and chunking
+- [x] Embedding generation and persistence
+- [x] FAISS vector retrieval
+- [x] Local LLM integration with Ollama
+- [x] Basic RAG question answering
+- [x] Source labels and page references
+- [x] Local textbook storage and selection
+- [x] Basic Streamlit upload and question-answering workflow
+
+### Planned Improvements
+
+- [ ] Improve citation reliability and inspect prompts
+- [ ] Build a small retrieval evaluation dataset
+- [ ] Measure Recall@k, Precision@k, and MRR
+- [ ] Compare cosine similarity and L2-distance retrieval
+- [ ] Experiment with chunk size, overlap, and chunk boundaries
+- [ ] Compare embedding models using the same evaluation dataset
+- [ ] Evaluate answer correctness and groundedness
+- [ ] Build textbook-based question generation
+- [ ] Add interactive quizzes and scoring
+- [ ] Develop an interview-preparation mode
+- [ ] Measure GPU memory usage, inference latency, and quantization trade-offs
+
+## 🎯 Project Goals
 
 The main goals are to:
 
-Build a useful local AI application from understandable components.
-Learn the fundamentals of embeddings, vector search, RAG, and LLM inference.
-Understand GPU inference, memory constraints, batching, and quantization.
-Evaluate retrieval and generation with repeatable experiments.
-Develop practical ML/AI engineering skills and a portfolio project suitable for technical discussions and interviews.
-🔒 Privacy and Limitations
-The application is designed for local processing through its current components.
-Uploaded textbooks and generated embedding files are stored locally.
-Ollama runs the language model locally; the application does not require a hosted LLM API for its current generation pipeline.
-Model downloads and Python package installation require internet access initially.
-Answers may contain incorrect claims or citations, even when the prompt requests textbook-only responses.
-Retrieval quality depends on PDF text quality, chunking, the embedding model, and the search configuration.
-Scanned PDFs may require OCR, which is not currently guaranteed by the text-extraction pipeline.
+- Build a useful local AI application from understandable components.
+- Learn the fundamentals of embeddings, vector search, Retrieval-Augmented Generation (RAG), and LLM inference.
+- Understand GPU inference, memory constraints, batching, and quantization.
+- Evaluate retrieval and generation with repeatable experiments.
+- Develop practical ML/AI engineering skills and a portfolio project suitable for technical discussions and interviews.
 
-Use textbooks and other documents only when you have the appropriate rights to process and store them.
+---
 
-📖 Learning Philosophy
+## 🔒 Privacy and Limitations
+
+- The application is designed for local processing through its current components.
+- Uploaded textbooks and generated embedding files are stored locally.
+- Ollama runs the language model locally; the application does not require a hosted LLM API for its current generation pipeline.
+- Model downloads and Python package installation require internet access initially.
+- Answers may contain incorrect claims or citations, even when the prompt requests textbook-only responses.
+- Retrieval quality depends on PDF text quality, chunking, the embedding model, and the search configuration.
+- Scanned PDFs may require OCR, which is not currently guaranteed by the text-extraction pipeline.
+- Use textbooks and other documents only when you have the appropriate rights to process and store them.
+
+---
+
+## 📖 Learning Philosophy
 
 The project deliberately starts with simple Python implementations rather than relying on a large RAG framework.
 
 Each improvement should follow this cycle:
 
-Understand → Implement → Experiment → Evaluate → Improve
+**Understand → Implement → Experiment → Evaluate → Improve**
 
 The aim is not only to build an application that works, but to understand why it works, where it fails, and how to improve it based on evidence.
 
-Built as a hands-on learning project in local LLMs, machine learning, and AI engineering.
+---
+
+*Built as a hands-on learning project in local LLMs, machine learning, and AI engineering.*
